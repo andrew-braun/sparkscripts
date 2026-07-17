@@ -1,0 +1,28 @@
+# Glyphin
+
+> Glyphin teaches you to read Thai script through real, high-frequency words —
+> with guided letter lessons, progressive decoding, and retrieval practice.
+
+Most apps drop you in front of an alphabet chart and ask you to memorize it.
+Glyphin instead teaches the highest-frequency letter and word combinations
+first, so learners start reading real Thai words from day one. Lessons introduce
+useful words, letters, and reading rules in a progressive path, then have you
+practice them in new contexts before revealing answers.
+
+## Pages
+
+- [Home](https://glyphin.app/): What Glyphin is and how to start the first lesson.
+- [How Glyphin teaches Thai reading](https://glyphin.app/about): The method — real words, progressive decoding, retrieval practice, and evidence-informed lesson design.
+- [Thai reading lessons](https://glyphin.app/learn): The lesson index. Browse the step-by-step reading path that introduces words, letters, and rules.
+
+## Lessons
+
+Individual lessons live at `https://glyphin.app/learn/{id}`. The complete,
+canonical list of lesson URLs comes from the active published curriculum:
+
+- [Sitemap](https://glyphin.app/sitemap.xml): Every indexable page, including all published lesson URLs.
+
+## Notes
+
+- Interactive learner tools (`/alphabet`, `/practice`, `/words`) and account pages (`/auth`) are app surfaces intended for use inside the product and are not part of the public, indexable content set.
+- The canonical origin is `https://glyphin.app`. Non-canonical hosts (preview deployments) are not indexable.

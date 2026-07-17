@@ -93,6 +93,12 @@ On production, learner workflows and utilities listed as non-indexable in
 `docs/seo.md` emit `noindex, follow`. Indexable documents must not emit a
 `noindex` directive.
 
+`static/llms.txt` is a hand-curated overview for AI agents
+([llmstxt.org](https://llmstxt.org)), served at `/llms.txt`. It links only the
+indexable public pages and defers the full lesson list to `/sitemap.xml`; it is
+not sitemap-derived and, like any non-document endpoint, never appears in the
+sitemap itself. Keep its links in sync with the indexable set in `docs/seo.md`.
+
 ## Status and canonical behavior
 
 - Every sitemap URL returns `200` HTML without an intervening redirect, exposes
