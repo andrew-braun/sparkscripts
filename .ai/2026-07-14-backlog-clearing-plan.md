@@ -285,12 +285,15 @@ shipped _without_ their gate (Task 1), and what post-launch verification remains
       **done** — headers confirmed live.
 - [ ] **Task 5** — Thai native-speaker review. Needs a human; Andri is sourcing a
       reviewer.
-- [ ] **Task 6** — `thaiPack` cleanup. **Planned 2026-07-15** in
-      `.ai/2026-07-15-thaipack-client-retirement.md` (supersedes the stale April
-      plan). Unblocked now that the learner-journey work has landed. Measured:
-      the client ships 43 KB gzip of curriculum on every page via the layout →
-      `progress.ts`; the bundle win is modest (~7–14 KB gzip), the real payoff is
-      closing the server/client drift bug. Ready to implement.
+- [x] **Task 6** — `thaiPack` cleanup. **DONE 2026-07-15** (`8fa0ef7`). The client
+      now reads the published lesson catalog through `+layout.server.ts`; a
+      `grep` confirms zero `$lib/data/thai` imports in stores, components, or
+      routes. The only surviving `thaiPack` references are the intended
+      out-of-scope ones — the server-only legacy fallback in
+      `published-lessons.ts` and the authoring source `thai.ts`. An ESLint
+      `no-restricted-imports` guard (`eslint.config.js`) keeps the shortcut from
+      returning. `pnpm check` clean. Full write-up in
+      `.ai/2026-07-15-thaipack-client-retirement.md` (marked complete).
 - [x] **robots.txt drift** — **decided 2026-07-14: keep Cloudflare's Managed
       robots.txt.** Andri will maintain the file's directives in the Cloudflare
       dashboard. Follow-up: reconcile `docs/search-indexing.md` so the contract
@@ -307,12 +310,10 @@ those routes are done and verified with `pnpm check`. Two `.ai` trackers
 `2026-07-14-recap-skip-implementation-plan.md`) are still modified in the tree, so
 adjacent curriculum/publication work may still be in flight.
 
-**Task 6 stays blocked** for the same underlying reason: client `thaiPack`
-imports grew rather than shrank during this work (now including
-`/+page.server.ts` and `/+page.svelte`). It should get _easier_ once the stage
-metadata fully flows through the delivery artifact — that is the mechanism Task 6
-needs to drop the static import — but attempt it only once that curriculum work
-settles and with real bundle numbers in hand.
+**Task 6 is complete (2026-07-15, `8fa0ef7`).** It landed once the stage metadata
+flowed through the delivery artifact, exactly as anticipated: the client now
+reads the published catalog from `+layout.server.ts` instead of importing the
+static bundle, and an ESLint guard prevents regression.
 
 ## Open questions
 
