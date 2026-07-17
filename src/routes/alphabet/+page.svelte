@@ -2,6 +2,7 @@
 	import LetterDetailPanel from "$lib/components/content/alphabet/LetterDetailPanel.svelte";
 	import PageShell from "$lib/components/layout/PageShell.svelte";
 	import PageMetadata from "$lib/components/seo/PageMetadata.svelte";
+	import Heading from "$lib/components/ui/Heading.svelte";
 	import Progress from "$lib/components/ui/Progress.svelte";
 	import Reveal from "$lib/components/ui/Reveal.svelte";
 	import ToggleTiles, { type ToggleTileOption } from "$lib/components/ui/ToggleTiles.svelte";
@@ -81,6 +82,8 @@
   - A progress bar at the top shows how many letters the user has learned out of the total.
 -->
 <PageShell class="alphabet">
+	<Heading as="h1">Your Thai alphabet progress</Heading>
+
 	<!-- Visual progress bar: fill width is the percentage of letters learned -->
 	<div class="alphabet__progress">
 		<Reveal as="div" distance={14}>

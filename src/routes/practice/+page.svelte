@@ -22,6 +22,7 @@
 	import Button from "$lib/components/ui/Button.svelte";
 	import EmptyState from "$lib/components/ui/EmptyState.svelte";
 	import Eyebrow from "$lib/components/ui/Eyebrow.svelte";
+	import Heading from "$lib/components/ui/Heading.svelte";
 	import MetricDisplay from "$lib/components/ui/MetricDisplay.svelte";
 	import MetricPill from "$lib/components/ui/MetricPill.svelte";
 	import Progress from "$lib/components/ui/Progress.svelte";
@@ -97,6 +98,8 @@
 <PageMetadata metadata={data.metadata} />
 
 <PageShell narrow class="practice">
+	<Heading as="h1" class="practice__title">Thai reading practice</Heading>
+
 	<!-- STATE: No drills available (user hasn't completed any lessons) -->
 	{#if availableDrills.length === 0}
 		<Reveal as="div" distance={16}>

@@ -6,6 +6,7 @@
 	import Badge from "$lib/components/ui/Badge.svelte";
 	import Button from "$lib/components/ui/Button.svelte";
 	import EmptyState from "$lib/components/ui/EmptyState.svelte";
+	import Heading from "$lib/components/ui/Heading.svelte";
 	import { knownWords } from "$lib/stores/progress";
 
 	import type { PageProps } from "./$types";
@@ -25,11 +26,12 @@
     optional context note.
 -->
 <PageShell class="words">
-	{#if $knownWords.length > 0}
-		<header class="words__header">
+	<header class="words__header">
+		<Heading as="h1">Your Thai words</Heading>
+		{#if $knownWords.length > 0}
 			<p class="words__count">{$knownWords.length} words collected</p>
-		</header>
-	{/if}
+		{/if}
+	</header>
 
 	<!-- Empty state: shown when the user has not completed any lessons yet -->
 	{#if $knownWords.length === 0}
