@@ -4,10 +4,7 @@
 # Everything below is disallowed for crawl-budget hygiene. These rules are not
 # authorization — private endpoints are protected on the server.
 #
-# The `Sitemap:` directive is intentionally absent until /sitemap.xml exists.
-# Advertising a sitemap that 404s is worse than advertising none. Add
-# `Sitemap: https://glyphin.app/sitemap.xml` in the same change that adds the
-# route. See .ai/2026-07-11-search-indexing-readiness.md.
+# See .ai/2026-07-11-search-indexing-readiness.md and docs/search-indexing.md.
 
 User-agent: *
 Disallow: /api/
@@ -17,3 +14,5 @@ Disallow: /alphabet
 Disallow: /words
 Disallow: /practice
 Disallow: /learn/*/practice
+
+Sitemap: https://glyphin.app/sitemap.xml

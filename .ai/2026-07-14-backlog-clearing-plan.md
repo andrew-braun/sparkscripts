@@ -275,10 +275,21 @@ shipped _without_ their gate (Task 1), and what post-launch verification remains
       clean. **Still needs** the Cloudflare Workers Builds build-time `SITE_ORIGIN`
       variable (prerender reads it at build time — a missing build var breaks the
       deploy) — Andri.
-- [ ] **Task 1.3 (sitemap)** — deferred to backlog by Andri 2026-07-14. Add
-      `/sitemap.xml` sourced from `getPublishedLessonEntries()` per
-      `docs/search-indexing.md`, then the `Sitemap:` line. Note the managed
-      robots.txt decision below before writing the `Sitemap:` line.
+- [x] **Task 1.3 (sitemap)** — **DONE 2026-07-17.** `GET /sitemap.xml`
+      (`src/routes/sitemap.xml/+server.ts`) is a dynamic endpoint (not
+      prerendered) that projects `/`, `/about`, `/learn`, and one `/learn/{id}`
+      per lesson from `getPublishedLessonEntries()`. Serialization lives in
+      `src/lib/server/sitemap.ts` (`buildSitemap(origin, paths)` — absolute HTTPS
+      `<loc>` only, no `lastmod`/`changefreq`/`priority`, deterministic order,
+      de-duped, XML-escaped), covered by `sitemap.test.ts` (7 tests). The route
+      404s on any non-canonical host so **preview `/sitemap.xml` returns 404** per
+      the contract. Added `Sitemap: https://glyphin.app/sitemap.xml` to
+      `static/robots.txt`. `pnpm check`, full test suite, and `vite build`
+      (prerender set unchanged; sitemap compiles as a Worker endpoint) all clean.
+      **Not built here (separate readiness item):** preview-domain HTML `noindex`
+      / `X-Robots-Tag` suppression and disallow-all preview `robots.txt` — no
+      preview-detection infra exists in `hooks.server.ts` yet; the sitemap route
+      self-guards its own host, but the broader preview-noindex story remains open.
 - [ ] **Task 3** — hosted security tail (SSL enforcement, API-key migration,
       publication write path, `graphql_public`) + Andri's authenticated smoke
       checks. The security-header and pnpm deploy verification folded in here is
