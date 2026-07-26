@@ -130,9 +130,9 @@ Options:
 
 ```ts
 export function initProgress() {
- const loaded = loadProgress();
- progress.set(loaded);
- progress.subscribe(saveProgress);
+	const loaded = loadProgress();
+	progress.set(loaded);
+	progress.subscribe(saveProgress);
 }
 ```
 
@@ -150,13 +150,13 @@ Runes are enabled project-wide (`svelte.config.js` sets `runes: true`), but `pro
 ```ts
 const state = $state<AppProgress>(createInitial());
 export const progress = {
- get value() {
-  return state;
- },
- completeLesson(id, score) {
-  /* mutate state */
- },
- // ...
+	get value() {
+		return state;
+	},
+	completeLesson(id, score) {
+		/* mutate state */
+	},
+	// ...
 };
 ```
 

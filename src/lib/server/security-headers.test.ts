@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { describe, it } from "node:test";
+
+import { describe, it } from "vitest";
 
 import { SECURITY_HEADERS } from "./security-headers.ts";
 

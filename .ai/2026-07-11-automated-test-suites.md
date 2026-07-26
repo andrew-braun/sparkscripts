@@ -8,6 +8,32 @@
 
 **Tech Stack:** Vitest, Testing Library for Svelte, Playwright, axe-core, local Supabase CLI, SvelteKit
 
+## Status (updated 2026-07-26)
+
+First slice landed — runner + boundary coverage + fast CI:
+
+- **Task 1 (runner):** done. Vitest 4 configured in the `test` block of
+  `vite.config.ts` (Node env, `sveltekit()` resolves aliases). All 16 existing
+  `node --test` suites migrated to Vitest (`node:test` import → `vitest`,
+  `node:assert` kept). `pnpm test` → `vitest run`; added `pnpm test:watch`.
+  `docs/testing.md` written.
+- **Task 2 (curriculum/delivery):** partial. `src/lib/server/delivery-payload.test.ts`
+  (tip mapping + payload validation, folding in the old standalone tips script,
+  now deleted) and `src/lib/utils/publication.test.ts` (cache-key/filename
+  determinism). Fixture is inlined rather than a shared `__fixtures__/lesson.ts`.
+- **Task 3 (learner/auth boundaries):** partial. Extracted the sync route's pure
+  parser to `src/lib/server/learner-sync-input.ts` + full test; `src/lib/server/auth.test.ts`
+  covers the redirect allow-list, email/OTP normalization, and form readers. The
+  **progress-store** behavior tests (Step 3) are NOT done yet.
+- **Task 7 Step 1 (fast CI):** done — `.github/workflows/quality.yml`.
+- **Not started:** Task 4 (component/DOM tests — needs Testing Library + jsdom,
+  the current component `*.test.js` only assert on `.svelte` source text), Task 5
+  (local Supabase integration), Task 6 (Playwright E2E + smoke), Task 7 Step 2
+  (opt-in integration CI jobs).
+
+Test count: 54 → 85. `pnpm quality:check` is green end-to-end. Commits remain the
+user's (repo rule) — the `git commit` steps below are not run by the AI.
+
 ## Global Constraints
 
 - This plan is post-launch and does not block the initial production deploy.

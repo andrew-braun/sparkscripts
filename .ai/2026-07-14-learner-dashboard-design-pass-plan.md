@@ -58,9 +58,9 @@ styled action container and render the existing derived label directly:
 
 ```svelte
 <div class="learner-home__action">
- <Button href={journey.resumeTarget.href} size="large" variant="primary">
-  {continueLabel}
- </Button>
+	<Button href={journey.resumeTarget.href} size="large" variant="primary">
+		{continueLabel}
+	</Button>
 </div>
 ```
 
@@ -73,43 +73,43 @@ Update the component styles to:
 
 ```scss
 .learner-home {
- display: grid;
- gap: $space-xl;
+	display: grid;
+	gap: $space-xl;
 
- &__hero {
-  gap: $space-lg;
-  padding: clamp($space-lg, 3.5vw, $space-2xl);
- }
+	&__hero {
+		gap: $space-lg;
+		padding: clamp($space-lg, 3.5vw, $space-2xl);
+	}
 
- &__heading {
-  --heading-font-size: clamp(2rem, 4vw, 3.5rem);
- }
+	&__heading {
+		--heading-font-size: clamp(2rem, 4vw, 3.5rem);
+	}
 
- &__lead {
-  margin: $space-sm 0 0;
- }
+	&__lead {
+		margin: $space-sm 0 0;
+	}
 
- &__action {
-  flex-shrink: 0;
+	&__action {
+		flex-shrink: 0;
 
-  :global(.btn) {
-   white-space: nowrap;
-  }
- }
+		:global(.btn) {
+			white-space: nowrap;
+		}
+	}
 
- &__journey {
-  gap: $space-md;
- }
+	&__journey {
+		gap: $space-md;
+	}
 }
 
 @media (max-width: $bp-md) {
- .learner-home {
-  &__action {
-   :global(.btn) {
-    width: 100%;
-   }
-  }
- }
+	.learner-home {
+		&__action {
+			:global(.btn) {
+				width: 100%;
+			}
+		}
+	}
 }
 ```
 

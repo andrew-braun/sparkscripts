@@ -47,7 +47,7 @@
 							Practice needs one more run
 						{/if}
 					</Eyebrow>
-					<h1>
+					<h2>
 						{#if courseComplete}
 							You've finished every Thai lesson.
 						{:else if passed}
@@ -55,7 +55,7 @@
 						{:else}
 							You are close.
 						{/if}
-					</h1>
+					</h2>
 					{#if courseComplete}
 						<p>
 							You've read your way through the whole course. Keep the words fresh with
@@ -128,7 +128,7 @@
 			display: grid;
 			gap: $space-sm;
 
-			h1,
+			h2,
 			p {
 				margin: 0;
 			}

@@ -125,13 +125,13 @@ In `src/lib/data/types.ts`:
 /** Minimal lesson descriptor the client runtime needs. Structurally satisfied
  *  by the server's PublishedLessonCatalogEntry. */
 export interface LessonCatalogEntry {
- id: number;
- stage: number;
- title: string;
- anchorWord: Word;
- newLetters: Letter[];
- vocabulary: LessonVocabularyEntry[];
- drills: DrillQuestion[];
+	id: number;
+	stage: number;
+	title: string;
+	anchorWord: Word;
+	newLetters: Letter[];
+	vocabulary: LessonVocabularyEntry[];
+	drills: DrillQuestion[];
 }
 ```
 
@@ -164,7 +164,7 @@ import { getPublishedLessonCatalog } from "$lib/server/published-lessons";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async () => {
- return { catalog: await getPublishedLessonCatalog() };
+	return { catalog: await getPublishedLessonCatalog() };
 };
 ```
 

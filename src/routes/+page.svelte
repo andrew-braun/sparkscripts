@@ -58,10 +58,8 @@
 <div class="home container">
 	{#if showDashboard}
 		<LearnerHomeHub {authenticated} {journey} {stats} />
-	{:else if hasHydratedProgress}
-		<HomeHero />
 	{:else}
-		<div class="home__loading card" aria-hidden="true"></div>
+		<HomeHero />
 	{/if}
 </div>
 
@@ -70,10 +68,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: $space-3xl;
-
-		&__loading {
-			background: var(--color-surface-muted);
-			min-height: 34rem;
-		}
 	}
 </style>

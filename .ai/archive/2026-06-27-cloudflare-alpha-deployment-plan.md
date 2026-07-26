@@ -264,16 +264,16 @@ phase-1 choices must not entrench web-only patterns.
 
     ```jsonc
     {
-     "name": "glyphin",
-     "main": ".svelte-kit/cloudflare/_worker.js",
-     "compatibility_date": "<implementation date, >= 2024-09-23>",
-     "compatibility_flags": ["nodejs_compat"],
-     "workers_dev": true,
-     "preview_urls": true,
-     "assets": {
-      "binding": "ASSETS",
-      "directory": ".svelte-kit/cloudflare",
-     },
+    	"name": "glyphin",
+    	"main": ".svelte-kit/cloudflare/_worker.js",
+    	"compatibility_date": "<implementation date, >= 2024-09-23>",
+    	"compatibility_flags": ["nodejs_compat"],
+    	"workers_dev": true,
+    	"preview_urls": true,
+    	"assets": {
+    		"binding": "ASSETS",
+    		"directory": ".svelte-kit/cloudflare",
+    	},
     }
     ```
 

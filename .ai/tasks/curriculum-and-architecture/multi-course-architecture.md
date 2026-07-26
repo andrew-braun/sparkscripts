@@ -113,57 +113,57 @@ Recommended DTO shape direction:
 
 ```ts
 type CourseSummary = {
- id: string;
- slug: string;
- name: string;
- nativeName: string;
- scriptSystemSlug: string;
- direction: "ltr" | "rtl";
- heroTitle: string;
- heroSubtitle: string;
- seoTitle: string;
- seoDescription: string;
- fontClass?: string;
+	id: string;
+	slug: string;
+	name: string;
+	nativeName: string;
+	scriptSystemSlug: string;
+	direction: "ltr" | "rtl";
+	heroTitle: string;
+	heroSubtitle: string;
+	seoTitle: string;
+	seoDescription: string;
+	fontClass?: string;
 };
 
 type Grapheme = {
- id: string;
- text: string;
- romanization: string;
- pronunciation: string;
- kind: string;
- groupKey: string;
- groupLabel: string;
- mnemonic?: string;
- details?: Array<{ label: string; value: string }>;
- tags?: string[];
+	id: string;
+	text: string;
+	romanization: string;
+	pronunciation: string;
+	kind: string;
+	groupKey: string;
+	groupLabel: string;
+	mnemonic?: string;
+	details?: Array<{ label: string; value: string }>;
+	tags?: string[];
 };
 
 type WordSegment = {
- text: string;
- sound: string;
+	text: string;
+	sound: string;
 };
 
 type CourseWord = {
- id: string;
- text: string;
- meaning: string;
- pronunciation: string;
- category?: string;
- segments: WordSegment[];
- contextNote?: string;
+	id: string;
+	text: string;
+	meaning: string;
+	pronunciation: string;
+	category?: string;
+	segments: WordSegment[];
+	contextNote?: string;
 };
 
 type Lesson = {
- id: string;
- slug: string;
- stage: number;
- title: string;
- anchorWord: CourseWord;
- newGraphemes: Grapheme[];
- rulesIntroduced: Rule[];
- drills: DrillQuestion[];
- reviewGraphemes?: string[];
+	id: string;
+	slug: string;
+	stage: number;
+	title: string;
+	anchorWord: CourseWord;
+	newGraphemes: Grapheme[];
+	rulesIntroduced: Rule[];
+	drills: DrillQuestion[];
+	reviewGraphemes?: string[];
 };
 ```
 

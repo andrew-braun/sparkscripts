@@ -6,6 +6,7 @@
 	import LessonGateState from "$lib/components/lesson/LessonGateState.svelte";
 	import LessonLearnFlow from "$lib/components/lesson/LessonLearnFlow.svelte";
 	import PageMetadata from "$lib/components/seo/PageMetadata.svelte";
+	import Heading from "$lib/components/ui/Heading.svelte";
 	import { getLessonJourneyState, progress } from "$lib/stores/progress";
 
 	import type { PageProps } from "./$types";
@@ -35,6 +36,7 @@
 </svelte:head>
 
 <PageShell class="lesson">
+	<Heading as="h1" class="visually-hidden">{lesson.title}</Heading>
 	{#if learnLocked}
 		<LessonGateState
 			title="This lesson is still locked."

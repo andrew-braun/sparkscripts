@@ -11,6 +11,7 @@
 	import StepPracticeDeck from "$lib/components/lesson/StepPracticeDeck.svelte";
 	import StepPracticeRecap from "$lib/components/lesson/StepPracticeRecap.svelte";
 	import PageMetadata from "$lib/components/seo/PageMetadata.svelte";
+	import Heading from "$lib/components/ui/Heading.svelte";
 	import {
 		getLessonJourneyState,
 		getPracticePassCorrectCount,
@@ -114,6 +115,7 @@
 </svelte:head>
 
 <PageShell class="lesson">
+	<Heading as="h1" class="visually-hidden">Practice {lesson.title}</Heading>
 	{#if learnLocked}
 		<LessonGateState
 			title="This practice is still locked."

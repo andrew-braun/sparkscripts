@@ -24,6 +24,7 @@
 - `pnpm db:reset` is for full local resets when you intentionally want to wipe
   learner and auth state as well as refresh lesson content.
 - When architecture, tech choices, config, environment, deployment, or workflow assumptions change, update every relevant instruction file in the same change.
+- Never run `git commit` (or create commits any other way) in this repo, even if asked in the moment — the user makes every commit. Suggesting a short Conventional Commits-style message and a good time to commit is fine; actually committing is not.
 - Keep `src/routes` responsible for routing, route data, and metadata.
 - Keep `src/lib/components` responsible for reusable rendering. Keep UI primitives domain-agnostic.
 - Prefer Bits UI for reusable interactive primitives and composite controls wherever possible instead of hand-rolling accessibility behavior.

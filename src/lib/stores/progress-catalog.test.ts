@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { describe, it } from "node:test";
+
+import { describe, it } from "vitest";
 
 import type { LessonCatalogEntry } from "../data/types.ts";
 import { createProgressCatalog } from "./progress-catalog.ts";

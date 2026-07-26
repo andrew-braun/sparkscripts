@@ -46,6 +46,14 @@
 - `pnpm db:reset` is for full local resets when you intentionally want to wipe
   learner and auth state as well as refresh lesson content.
 
+## Commit Discipline
+
+- The AI must never run `git commit` (or any command that creates a commit) in this repo. The user makes every commit themselves.
+- This holds even if the user asks the AI to commit in the moment — decline, and explain that commits are user-only in this repo.
+- The AI may stage suggestions for the user to review, but pressing the actual commit button is always the user's action.
+- The AI may recommend a 1-2 sentence Conventional Commits-style message and may suggest good natural commit boundaries (e.g. "this is a good stopping point to commit"), but stops there.
+- Pushing, force-pushing, and other remote-affecting git operations remain equally off-limits to the AI, consistent with existing repo-wide risk guidance.
+
 ## Task Tracking
 
 - Every non-minor task must get a dedicated markdown spec and tracker file in `.ai/`.

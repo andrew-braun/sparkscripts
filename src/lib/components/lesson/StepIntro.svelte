@@ -23,7 +23,7 @@
 	<section class="intro-shell surface-panel lesson-accent-panel">
 		<div class="intro-shell__copy">
 			<Badge>Stage {lesson.stage}</Badge>
-			<h1 class="step__title">{lesson.title}</h1>
+			<h2 class="step__title">{lesson.title}</h2>
 		</div>
 
 		<!-- Large word reveal — the learner's first look at the anchor word -->

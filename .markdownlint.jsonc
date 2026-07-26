@@ -2,4 +2,8 @@
 	// Let Prettier own Markdown table formatting; markdownlint cannot auto-fix MD060.
 	"MD060": false,
 	"MD013": false,
+	// Let Prettier own indentation inside fenced code blocks — it formats embedded
+	// code with the repo's tab style, which would otherwise trip MD010 and cause a
+	// prettier<->markdownlint fix oscillation. Hard tabs in prose are still caught.
+	"MD010": { "code_blocks": false },
 }

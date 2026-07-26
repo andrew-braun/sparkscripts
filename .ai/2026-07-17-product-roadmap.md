@@ -31,46 +31,59 @@ next, reprioritized with Andri on 2026-07-17.
 
 ## Near term
 
-### h1 gaps — in progress (this session)
+### h1 gaps — done (2026-07-26)
 
 The stale SEO contract in `docs/seo.md` (audited 2026-07-11, before the dashboard
-redesign) said several routes had no `h1`. Re-audited against source 2026-07-17:
+redesign) said several routes had no `h1`. Re-audited against source and closed:
 
-- **Done this session:** visible `h1` added to `/alphabet`
+- **Utility pages:** visible `h1` added to `/alphabet`
   ("Your Thai alphabet progress"), `/words` ("Your Thai words"), `/practice`
-  ("Thai reading practice"). `pnpm check` clean.
-- **Already fixed by the redesign, not gaps:** `/learn` emits
-  `<h1>Your Thai course</h1>`; `/about` already matched.
-- **Still open — needs a heading-hierarchy pass, not a blind add:**
-  - `/learn/[id]` and `/learn/[id]/practice`: the shared `Step*` components emit
-    `h1`s that _appear, disappear, and change per step_ — `StepIntro` →
-    `<h1>{lesson.title}</h1>`, `StepComplete` → `<h1>Lesson complete.</h1>`,
-    `StepPracticeComplete` → `<h1>`, while `LessonGateState` (locked states) and
-    the deck/recap/checkpoint steps emit no `h1`. A page-level `h1` would collide
-    on the intro step. Fix = one stable page `h1` + demote the per-step `h1`s to
-    `h2`, and give `LessonGateState` an `h1`. Small, careful, cross-component.
-  - **Homepage `/` — the SEO-critical one.** The prerendered anonymous HTML
-    renders only a loading skeleton (`{:else}` branch, pre-hydration), so crawlers
-    and no-JS visitors get **no `h1` and no marketing content**; the hero only
-    appears after JS. The dashboard redesign deliberately used the skeleton to
-    avoid a hero→dashboard flash for returning learners. Fixing it properly
-    (default to the server-rendered hero, swap to dashboard on hydration)
-    reintroduces that flash for anonymous-with-local-progress learners. **This is
-    a UX/SEO tradeoff for Andri to decide, not a silent change.**
-  - Reconcile `docs/seo.md` with reality afterward (its `h1` column and "current
-    gaps" table are stale post-redesign).
+  ("Thai reading practice").
+- **Homepage `/` (SEO-critical):** the prerendered anonymous HTML rendered only a
+  loading skeleton, so crawlers/no-JS visitors got no `h1` and no marketing copy.
+  Now server-renders `HomeHero` by default and swaps to the dashboard on
+  hydration. Andri accepted the resulting hero→dashboard flash for
+  anonymous-with-local-progress learners as a fine tradeoff for SEO (2026-07-26).
+- **Lesson-flow pages `/learn/[id]` + `/learn/[id]/practice`:** the shared
+  `Step*` components emitted `h1`s that appeared/disappeared/changed per step.
+  Fixed with one stable `visually-hidden` page-level `h1` (`{lesson.title}` /
+  `Practice {lesson.title}`) present in every step and locked state, and the
+  per-step `h1`s (`StepIntro`, `StepPracticeComplete`) demoted to `h2`.
+- **`docs/seo.md` reconciled** — the "Current implementation gaps" table now
+  reflects the 2026-07-26 h1 state.
+- **Still open (copy, not presence):** `/` reads "Skip the drills. Start
+  reading." vs contract "Learn to read Thai through real words."; `/learn` reads
+  "Your Thai course" vs contract "Thai reading lessons." Both are copy decisions
+  for Andri, not blocking gaps.
 
-### Stronger testing setup — elevated
+### Stronger testing setup — first slice done (2026-07-26)
 
-Today: ~16 `node --test` files and **no CI at all**. A regression in curriculum
-mapping, learner sync, auth redirects, or the (coming) entitlement gate would ship
-silently. Plan already exists: `.ai/2026-07-11-automated-test-suites.md` (staged
-Vitest → component → local-Supabase integration → Playwright → CI gates).
+Was: ~16 `node --test` files and **no CI at all**. First slice landed:
 
-Recommended first slice: stand up the Vitest runner + a GitHub Actions
-`quality.yml` (install, format, lint, typecheck, unit) on the tests that already
-exist, then add learner-sync/auth boundary tests. This becomes the safety net for
-the monetization work, so it should lead.
+- **Runner:** migrated all 16 suites from `node --test` to **Vitest 4** (unified
+  runner; `pnpm test` → `vitest run`, `pnpm test:watch`). Config lives in the
+  `test` block of `vite.config.ts`; the `sveltekit()` plugin resolves `$lib` and
+  the custom aliases so tests import like app code. Node environment (no DOM yet).
+- **Boundary coverage added** (the monetization-adjacent trust boundaries): the
+  learner-sync input parser (extracted from the route into
+  `src/lib/server/learner-sync-input.ts`), the auth redirect allow-list +
+  email/OTP normalization, published-payload delivery mapping, and publication
+  cache-key integrity. 54 → **85 tests**.
+- **CI:** `.github/workflows/quality.yml` — fast PR gate (frozen install with
+  pnpm cache, then format, ESLint, Stylelint, markdownlint, svelte-check, Vitest),
+  each check independent so one push reports every failure. This is the repo's
+  first CI.
+- **Repo hygiene to make the gate green:** `.prettierignore` now excludes
+  generated/tool dirs; markdownlint globs exclude `.pnpm-store`/`.generated`/tool
+  dirs; `MD010` no longer fights Prettier over code-block indentation. Pre-existing
+  `.ai` doc drift was formatted. `pnpm quality:check` is now green end-to-end.
+- **Reference:** `docs/testing.md`.
+
+Deferred to later layers (staged in `.ai/2026-07-11-automated-test-suites.md`):
+component/DOM tests (Testing Library + jsdom), progress-store behavior tests,
+local-Supabase integration (RLS/projection/sync), Playwright E2E + deployment
+smoke, and the heavier opt-in CI jobs (Task 7 Step 2). These can follow, but the
+free/paid **entitlement gate** should get integration coverage as it is built.
 
 ## Mid term
 

@@ -72,18 +72,30 @@ The audit found no duplicate static page titles. Dynamic lesson titles include
 the published lesson title, but their current suffixes need the contract changes
 listed above.
 
-| Route                   | Current title/description                                                   | Current heading                                                                            | Other missing contract fields                   |
-| ----------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| `/`                     | Both missing                                                                | The component-rendered `h1` is “Skip the drills. Start reading.” and needs contract copy   | Canonical, robots policy, Open Graph type/image |
-| `/about`                | Present; title and description need contract copy                           | One `h1` is present and already matches the contract                                       | Canonical, robots policy, Open Graph type/image |
-| `/learn`                | Present; title and description need contract copy                           | No `h1`; lesson cards begin at `h3`                                                        | Canonical, robots policy, Open Graph type/image |
-| `/learn/[id]`           | Present; title and description need contract copy                           | No guaranteed `h1` in the initial learning or locked state                                 | Canonical, robots policy, Open Graph type/image |
-| `/learn/[id]/practice`  | Present; existing description must be removed                               | An `h1` appears only in the completion state; locked and active states have none           | Canonical and `noindex, follow`                 |
-| `/alphabet`             | Present; title needs contract copy and existing description must be removed | No `h1`; category headings begin at `h2`                                                   | Canonical and `noindex, follow`                 |
-| `/words`                | Present; title needs contract copy and existing description must be removed | No `h1`; the empty-state title is an `h2`                                                  | Canonical and `noindex, follow`                 |
-| `/practice`             | Present; title needs contract copy and existing description must be removed | No `h1`; state headings and the empty-state title are `h2`                                 | Canonical and `noindex, follow`                 |
-| `/auth`                 | Title needs contract copy; existing description must be removed             | Exactly one conditional `h1` is rendered in each state; copy already matches the contract  | Canonical and `noindex, follow`                 |
-| `/test/lesson-complete` | Title and `noindex, nofollow` are present; description is correctly omitted | The child component renders “Lesson complete.”, which needs preview-specific contract copy | Canonical; no social metadata should be added   |
+**h1 reconciliation (2026-07-26):** Every route below now emits exactly one `h1`
+in server-rendered HTML, satisfying the "no client-transition-only heading"
+policy. The homepage no longer prerenders an empty skeleton — it server-renders
+`HomeHero` by default and swaps to the learner dashboard on hydration (an
+accepted hero→dashboard flash for anonymous learners with local progress). The
+two lesson-flow routes use a single stable, `visually-hidden` page-level `h1`
+that is present in every step and locked state, with the former per-step `h1`s
+(`StepIntro`, `StepPracticeComplete`) demoted to `h2`. Remaining h1 work is copy
+alignment, not presence: `/` still reads "Skip the drills. Start reading."
+(contract: "Learn to read Thai through real words.") and `/learn` reads "Your
+Thai course" (contract: "Thai reading lessons"). Those copy decisions are open.
+
+| Route                   | Current title/description                                                   | Current heading                                                                                 | Other missing contract fields                   |
+| ----------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `/`                     | Both missing                                                                | Server-rendered `h1` “Skip the drills. Start reading.” (2026-07-26); copy differs from contract | Canonical, robots policy, Open Graph type/image |
+| `/about`                | Present; title and description need contract copy                           | One `h1` is present and already matches the contract                                            | Canonical, robots policy, Open Graph type/image |
+| `/learn`                | Present; title and description need contract copy                           | `h1` “Your Thai course” present; copy differs from contract                                     | Canonical, robots policy, Open Graph type/image |
+| `/learn/[id]`           | Present; title and description need contract copy                           | Stable `visually-hidden` page `h1` `{lesson.title}` in all states (2026-07-26); steps use `h2`  | Canonical, robots policy, Open Graph type/image |
+| `/learn/[id]/practice`  | Present; existing description must be removed                               | Stable `visually-hidden` page `h1` `Practice {lesson.title}` in all states (2026-07-26)         | Canonical and `noindex, follow`                 |
+| `/alphabet`             | Present; title needs contract copy and existing description must be removed | `h1` “Your Thai alphabet progress” present (2026-07-26)                                         | Canonical and `noindex, follow`                 |
+| `/words`                | Present; title needs contract copy and existing description must be removed | `h1` “Your Thai words” present (2026-07-26)                                                     | Canonical and `noindex, follow`                 |
+| `/practice`             | Present; title needs contract copy and existing description must be removed | `h1` “Thai reading practice” present (2026-07-26)                                               | Canonical and `noindex, follow`                 |
+| `/auth`                 | Title needs contract copy; existing description must be removed             | Exactly one conditional `h1` is rendered in each state; copy already matches the contract       | Canonical and `noindex, follow`                 |
+| `/test/lesson-complete` | Title and `noindex, nofollow` are present; description is correctly omitted | The child component renders “Lesson complete.”, which needs preview-specific contract copy      | Canonical; no social metadata should be added   |
 
 No route currently emits a canonical link, `og:type`, or `og:image`. The shared
 image required by this contract does not yet exist at

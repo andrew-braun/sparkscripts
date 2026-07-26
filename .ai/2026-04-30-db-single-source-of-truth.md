@@ -92,8 +92,8 @@ cases:
 
 ```ts
 export type PublishedLessonCatalogEntry = Pick<
- Lesson,
- "id" | "stage" | "title" | "anchorWord" | "newLetters" | "vocabulary" | "drills"
+	Lesson,
+	"id" | "stage" | "title" | "anchorWord" | "newLetters" | "vocabulary" | "drills"
 >;
 ```
 
@@ -168,7 +168,7 @@ import { getPublishedLessonCatalog } from "$lib/server/delivery-lessons";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async () => {
- return { lessons: await getPublishedLessonCatalog() };
+	return { lessons: await getPublishedLessonCatalog() };
 };
 ```
 
@@ -209,10 +209,10 @@ add an `initProgress(catalog)` function that populates them and re-runs normaliz
 ```ts
 /** Minimal lesson descriptor used for client-side progress normalization. */
 export interface LessonCatalogEntry {
- id: number;
- anchorWord: Word;
- newLetters: Letter[];
- vocabulary: LessonVocabularyEntry[];
+	id: number;
+	anchorWord: Word;
+	newLetters: Letter[];
+	vocabulary: LessonVocabularyEntry[];
 }
 ```
 
@@ -231,7 +231,7 @@ import type { LayoutData } from "./$types";
 let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
 onMount(() => {
- initProgress(data.lessons);
+	initProgress(data.lessons);
 });
 ```
 
@@ -244,9 +244,9 @@ Remove the `thaiPack` import. Accept `lessons` as a typed prop:
 
 ```ts
 interface Props {
- lessons: PublishedLessonCatalogEntry[]; // or the structural equivalent
- currentLessonId: number;
- knownWords: Word[];
+	lessons: PublishedLessonCatalogEntry[]; // or the structural equivalent
+	currentLessonId: number;
+	knownWords: Word[];
 }
 ```
 

@@ -1,2 +1,17 @@
 .pnpm-store
 .wrangler
+
+# Generated / machine-owned files — never hand- or tool-format these.
+pnpm-lock.yaml
+.svelte-kit
+.generated
+build
+
+# Local, gitignored, or tool-scaffolding directories.
+.kilo
+.superpowers
+.claude/settings.local.json
+supabase/.temp
+
+# Hand-tuned auth email templates (whitespace/rendering sensitive).
+supabase/templates
