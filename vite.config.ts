@@ -1,5 +1,6 @@
 import { sveltekit } from "@sveltejs/kit/vite";
-import { defineConfig } from "vitest/config";
+import { svelteTesting } from "@testing-library/svelte/vite";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
 	plugins: [sveltekit()],
@@ -14,13 +15,37 @@ export default defineConfig({
 		},
 	},
 	test: {
-		// All current and planned unit tests are pure Node-environment (no DOM).
-		// The component `.test.js` files assert on `.svelte` source text, not on a
-		// rendered DOM. A browser/component environment (Testing Library, jsdom)
-		// is a later layer — see `.ai/2026-07-11-automated-test-suites.md` Task 4.
-		environment: "node",
-		include: ["src/**/*.{test,spec}.{js,ts}", "scripts/**/*.test.mjs"],
-		// `sveltekit()` above resolves `$lib` and the custom aliases from
-		// `svelte.config.js`, so tests import modules exactly as app code does.
+		// Two isolated projects. The `dom` project adds the browser `resolve`
+		// conditions that Svelte client rendering needs (via `svelteTesting()`);
+		// those must NOT leak into the `node` project, where they would change how
+		// server deps like `@supabase/ssr` resolve. `sveltekit()` is inherited by
+		// both (`extends: true`) so `$lib` and the custom aliases resolve as in app
+		// code.
+		projects: [
+			{
+				extends: true,
+				test: {
+					name: "node",
+					// Pure Node-environment suites: server trust boundaries, utils,
+					// curriculum/delivery mapping, and build-tooling scripts. Component
+					// `.test.js` files here assert on `.svelte` source text, not a DOM.
+					environment: "node",
+					include: ["src/**/*.{test,spec}.{js,ts}", "scripts/**/*.test.mjs"],
+					exclude: [...configDefaults.exclude, "src/**/*.dom.test.{js,ts}"],
+				},
+			},
+			{
+				extends: true,
+				plugins: [svelteTesting()],
+				test: {
+					name: "dom",
+					// Renders real components + exercises the localStorage-backed
+					// progress store. `svelteTesting()` handles auto-cleanup.
+					environment: "jsdom",
+					include: ["src/**/*.dom.test.{js,ts}"],
+					setupFiles: ["./src/test/setup-dom.ts"],
+				},
+			},
+		],
 	},
 });

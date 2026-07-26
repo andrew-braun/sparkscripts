@@ -79,11 +79,18 @@ Was: ~16 `node --test` files and **no CI at all**. First slice landed:
   `.ai` doc drift was formatted. `pnpm quality:check` is now green end-to-end.
 - **Reference:** `docs/testing.md`.
 
-Deferred to later layers (staged in `.ai/2026-07-11-automated-test-suites.md`):
-component/DOM tests (Testing Library + jsdom), progress-store behavior tests,
-local-Supabase integration (RLS/projection/sync), Playwright E2E + deployment
-smoke, and the heavier opt-in CI jobs (Task 7 Step 2). These can follow, but the
-free/paid **entitlement gate** should get integration coverage as it is built.
+Second slice (2026-07-26, `.ai/2026-07-26-testing-expansion.md`): added the
+**progress-store behavior tests** (the localStorage learner state the entitlement
+gate will read) and a **component/DOM layer** (Testing Library + jsdom, via a new
+isolated Vitest project) covering `Button`/`ThemeToggle`/`Disclosure`/
+`RadioButtons`; plus a **deployment smoke script** (`pnpm test:smoke -- <url>`)
+and **Dependabot** (weekly pnpm + actions PRs). 85 → **107 tests**.
+
+Still deferred (staged in `.ai/2026-07-11-automated-test-suites.md`):
+local-Supabase integration (RLS/projection/sync), Playwright browser E2E, axe
+integration, portaled-overlay component tests (`HelpPopover`), and the heavier
+opt-in CI jobs (Task 7 Step 2). These can follow, but the free/paid **entitlement
+gate** should get integration coverage as it is built.
 
 ## Mid term
 

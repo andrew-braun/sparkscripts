@@ -11,7 +11,7 @@
 	} from "$lib/data/course-journey";
 	import type { AppProgress } from "$lib/data/types";
 	import { authSession } from "$lib/stores/learner";
-	import { applyLearnerProjection, progress } from "$lib/stores/progress";
+	import { applyLearnerProjection, initProgress, progress } from "$lib/stores/progress";
 
 	import type { PageProps } from "./$types";
 
@@ -46,6 +46,13 @@
 	);
 
 	onMount(() => {
+		// The root layout also initializes the progress catalog on mount, but
+		// Svelte mounts child routes before their parent layout, so this page's
+		// own onMount would otherwise merge server progress against an
+		// uninitialized (empty) catalog and silently drop it — causing a second,
+		// corrective flicker once the layout's init runs. Initializing here first
+		// makes this page's merge correct on the first pass.
+		initProgress(data.catalog);
 		if (data.projection) {
 			applyLearnerProjection(data.projection);
 		}

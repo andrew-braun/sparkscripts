@@ -26,13 +26,25 @@ First slice landed — runner + boundary coverage + fast CI:
   covers the redirect allow-list, email/OTP normalization, and form readers. The
   **progress-store** behavior tests (Step 3) are NOT done yet.
 - **Task 7 Step 1 (fast CI):** done — `.github/workflows/quality.yml`.
-- **Not started:** Task 4 (component/DOM tests — needs Testing Library + jsdom,
-  the current component `*.test.js` only assert on `.svelte` source text), Task 5
-  (local Supabase integration), Task 6 (Playwright E2E + smoke), Task 7 Step 2
-  (opt-in integration CI jobs).
+- **Not started:** Task 5 (local Supabase integration), Task 7 Step 2 (opt-in
+  integration CI jobs).
 
-Test count: 54 → 85. `pnpm quality:check` is green end-to-end. Commits remain the
-user's (repo rule) — the `git commit` steps below are not run by the AI.
+Second slice (2026-07-26, `.ai/2026-07-26-testing-expansion.md`):
+
+- **Task 3 Step 3 (progress store):** done. `stores/progress.dom.test.ts` in a
+  new jsdom project (init/corrupted-recovery/rehydrate/idempotency/derivation/
+  persistence/server-reconciliation).
+- **Task 4 (component/DOM):** partial. Vitest now runs two isolated projects
+  (`node`, `dom` with `svelteTesting()` + jsdom). Rendered coverage for `Button`,
+  `ThemeToggle`, `Disclosure`, `RadioButtons`. `HelpPopover` (portaled Bits UI)
+  and axe integration deferred to a real-browser layer.
+- **Task 6 Step 5 (deployment smoke):** done as a standalone script,
+  `scripts/smoke-deployment.mjs` (`pnpm test:smoke -- <url>`). Playwright E2E
+  (Steps 1-4) still not started.
+- **Dependency hygiene:** `.github/dependabot.yml` (pnpm + github-actions).
+
+Test count: 54 → 85 → 107. `pnpm quality:check` is green end-to-end. Commits
+remain the user's (repo rule) — the `git commit` steps below are not run by the AI.
 
 ## Global Constraints
 
