@@ -55,3 +55,26 @@ hardcodes `path: "/"`, and sets no domain.
 
 **Note for the next deploy:** Cloudflare Workers Builds reads `packageManager`,
 so the production build toolchain changed. Confirm it resolves `pnpm@11.8.0`.
+
+## 2026-07-31 — transitive advisory sweep
+
+`pnpm audit` had drifted back to 7 findings (5 high, 1 moderate, 1 low). All were
+transitive dev/build tooling with patch-level fixes upstream. Added a
+`pnpm-workspace.yaml` `overrides:` block (pnpm 11 no longer reads
+`package.json` > `pnpm.overrides`) pinning five packages:
+
+| Package           | Reached via             | Pinned to  |
+| ----------------- | ----------------------- | ---------- |
+| `brace-expansion` | eslint > minimatch      | `>=5.0.8`  |
+| `fast-uri`        | stylelint > table > ajv | `>=3.1.4`  |
+| `js-yaml`         | markdownlint-cli2       | `>=5.2.2`  |
+| `postcss`         | vite / @sveltejs/kit    | `>=8.5.18` |
+| `sharp`           | wrangler > miniflare    | `>=0.35.0` |
+
+`cookie` was **not** overridden — the accepted-risk decision above still holds,
+and the residual `1 low` finding is that same unreachable `GHSA-pxg6-pf52-xh8x`.
+
+Verified: `pnpm audit` 7 findings -> 1 low, `pnpm test` 25 files / 107 tests
+passing, `pnpm lint` and `pnpm stylelint` clean, `pnpm exec vite build` succeeds
+through the Cloudflare adapter. `pnpm build` itself still requires local Supabase
+for the `prebuild` publication step — unrelated to this change.

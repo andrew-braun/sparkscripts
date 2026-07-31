@@ -1,3 +1,18 @@
+# Transitive security overrides. All five are dev/build-tooling dependencies with
+# patch-level fixes; re-check with `pnpm audit` and drop an entry once the direct
+# dependency ships the patched version on its own.
+#
+# `cookie` is deliberately NOT overridden. SvelteKit declares `cookie: ^0.6.0`,
+# and forcing >=0.7.0 outside that range in the library handling Supabase auth
+# session cookies is a real auth-correctness risk taken on behalf of an
+# unreachable low advisory. See .ai/2026-07-11-dependency-refresh-framework-ui.md
+# and the accepted-risk record in docs/dependency-maintenance.md.
+overrides:
+  brace-expansion: ">=5.0.8"
+  fast-uri: ">=3.1.4"
+  js-yaml: ">=5.2.2"
+  postcss: ">=8.5.18"
+  sharp: ">=0.35.0"
 allowBuilds:
   "@parcel/watcher": false
   esbuild: true

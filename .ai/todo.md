@@ -29,7 +29,7 @@ Those three are Task 1 and are the highest priority in the backlog plan.
 | `2026-07-14-backlog-clearing-plan.md`           | **Start here.** The ordered queue for everything below.         |
 | `2026-06-28-thai-curriculum-completion.md`      | Thai-speaker/corpus review of L22-46. Needs a human reviewer.   |
 | `2026-07-11-db-security-hardening.md`           | SSL enforcement, publishable/secret API keys, 2 flagged checks. |
-| `2026-07-11-dependency-refresh-framework-ui.md` | pnpm `11.6.0` carries 3 high advisories; the pin must move.     |
+| `2026-07-11-dependency-refresh-framework-ui.md` | Done 2026-07-31. Audit is 1 low (accepted `cookie`).            |
 | `2026-07-11-pre-rollout-tasks.md`               | Overtaken by the launch; needs rewriting as a post-launch list. |
 | `2026-06-13-practice-vocabulary-expansion.md`   | Blocked on a product decision — see below.                      |
 | `2026-04-30-db-single-source-of-truth.md`       | 4 runtime files still import `thaiPack`. Not started.           |
