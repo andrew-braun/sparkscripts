@@ -1,7 +1,11 @@
 # DB as Single Source of Truth for Lesson Content
 
 Created: 2026-04-30
-Status: **SUPERSEDED 2026-07-15 by
+Status: **SUPERSEDED 2026-07-15 — and the superseding plan has itself since
+completed (2026-07-15). Nothing here is actionable. The "4 runtime files still
+import `thaiPack`" claim is obsolete: as of 2026-07-31 the only importer is
+`src/lib/server/published-lessons.ts`, which is the intended server-side
+fallback. Superseded by
 `.ai/2026-07-15-thaipack-client-retirement.md`.** This doc's core mechanism — a
 live DB read via `+layout.server.ts` with `prerender` removed — became
 architecturally invalid once the app moved to server-first-and-prerendered. The

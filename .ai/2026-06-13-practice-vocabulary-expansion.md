@@ -2,7 +2,12 @@
 
 - Start date: 2026-06-13
 - Owner: Codex
-- Status: in progress
+- **Status: CLOSED 2026-07-14 by product decision.** The anchor/core/extension
+  practice-tier contract defined here **shipped and stands**. The follow-on
+  scored flip-card rebuild is **dropped** — `StepPracticeCheckpoint.svelte` was
+  kept instead and given the two-column answer grid
+  (`.ai/2026-07-11-practice-answer-grid.md`, since completed). Do not resume the
+  "next phase" sections below.
 
 ## Goal
 

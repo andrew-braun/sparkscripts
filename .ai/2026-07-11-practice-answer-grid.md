@@ -1,5 +1,11 @@
 # Scored practice answer grid Implementation Plan
 
+- **Status: COMPLETE — verified against source 2026-07-31.** The unticked
+  checkboxes below are stale bookkeeping, not remaining work.
+  `src/lib/components/lesson/StepPracticeCheckpoint.svelte:132` passes
+  `columns={2}` to the shared `RadioButtons`, which is the entire scope of this
+  plan. Do not re-execute it.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use $superpowers-subagent-driven-development (recommended) or $superpowers-executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make the four scored-practice answer buttons use the reusable two-column `RadioButtons` layout while retaining the existing one-column mobile behavior.

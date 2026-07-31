@@ -1,5 +1,12 @@
 # Search Indexing Readiness Implementation Plan
 
+- **Status: COMPLETE — verified against source 2026-07-31.** The unticked
+  checkboxes below are stale bookkeeping, not remaining work. `static/robots.txt`
+  disallows `/api/`, `/auth`, `/test/`, `/alphabet`, `/words`, `/practice`, and
+  `/learn/*/practice`, and carries the `Sitemap:` directive;
+  `src/routes/sitemap.xml/+server.ts` generates the sitemap from the lesson
+  publication; canonical URLs ship via `PageMetadata`. Do not re-execute this plan.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use $superpowers-subagent-driven-development (recommended) or $superpowers-executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Make every intended public page discoverable under one canonical production URL while keeping private, test, and low-value utility surfaces out of search indexes.

@@ -2,7 +2,14 @@
 
 - Start date: 2026-07-14
 - Owner: unassigned
-- Status: planning
+- **Status: CLOSED 2026-07-31 — the headline finding is fully resolved.** All
+  three "live gaps" below (security headers, `robots.txt`, `PageMetadata`
+  adoption) shipped between 2026-07-14 and 2026-07-26 and were re-verified
+  against source on 2026-07-31. The forward-looking half of this plan is
+  superseded by `.ai/2026-07-17-product-roadmap.md`. Kept for the audit
+  methodology and the per-plan disposition table, which is still useful history —
+  but **the "Actually" column below is now itself out of date**; see
+  `.ai/todo.md` for current state.
 - Source: `.ai` directory audit (2026-07-14), verified against the codebase and
   a live `pnpm audit`, not against tracker self-reporting.
 

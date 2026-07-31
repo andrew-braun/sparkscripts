@@ -1,5 +1,11 @@
 # SEO Foundation Implementation Plan
 
+- **Status: COMPLETE — verified against source 2026-07-31.** The unticked
+  checkboxes below are stale bookkeeping, not remaining work.
+  `src/lib/components/seo/PageMetadata.svelte` is adopted across all 20 route
+  files (`grep -rln PageMetadata src/routes/`) and emits `<link rel="canonical">`,
+  the `og:*` set, and the `twitter:*` set. Do not re-execute this plan.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use $superpowers-subagent-driven-development (recommended) or $superpowers-executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Give every route an intentional, consistent search and sharing contract without adding SEO-only filler.
