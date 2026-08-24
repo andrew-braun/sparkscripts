@@ -120,11 +120,11 @@
 		]
 	},
 	"dependencies": {
-		"@lucide/svelte": "^1.24.0",
-		"@supabase/ssr": "^0.12.0",
-		"@supabase/supabase-js": "^2.108.1",
-		"bits-ui": "^2.18.1",
-		"sass": "^1.101.0"
+		"@lucide/svelte": "^1.33.0",
+		"@supabase/ssr": "^0.12.4",
+		"@supabase/supabase-js": "^2.112.3",
+		"bits-ui": "^2.19.0",
+		"sass": "^1.103.1"
 	},
 	"volta": {
 		"node": "24.15.0"
